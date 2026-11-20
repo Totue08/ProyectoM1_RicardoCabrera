@@ -1,11 +1,65 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Colorfly Studio | Generador de colores</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
 </head>
 <body>
-    <h1>Texto Paletas de colores</h1>
+
+    <header>
+        <h1>Colorfly Studio</h1>
+        <p>Genera combinaciones de colores para tus ideas creativas.</p>
+    </header>
+
+    <main>
+
+        <section class="generator">
+            <h2>Generador de paletas</h2>
+
+            <p>Descubre nuevas combinaciones de colores con un solo clic.</p>
+
+            <label for="cantidadColores">Cantidad de colores:</label>
+            <input type="number" id="cantidadColores" min="2" max="10" value="5">
+
+            <button id="generarBtn" type="button">
+                Generar paleta de color
+            </button>
+        </section>
+
+        <section class="palette" aria-label="Paleta de colores generada">
+
+            <article class="color-card">
+                <div class="color-box"></div>
+                <p>#FFFFFF</p>
+            </article>
+
+            <article class="color-card">
+                <div class="color-box"></div>
+                <p>#FFFFFF</p>
+            </article>
+
+            <article class="color-card">
+                <div class="color-box"></div>
+                <p>#FFFFFF</p>
+            </article>
+
+            <article class="color-card">
+                <div class="color-box"></div>
+                <p>#FFFFFF</p>
+            </article>
+
+            <article class="color-card">
+                <div class="color-box"></div>
+                <p>#FFFFFF</p>
+            </article>
+
+        </section>
+    </main>
 </body>
 </html>
