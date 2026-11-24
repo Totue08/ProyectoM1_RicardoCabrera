@@ -1,6 +1,9 @@
+
 let generar = document.querySelector('#generarBtn');
 let cantidadpalette = document.querySelector('#cantidadColores');
 let palette = document.querySelector('.palette');
+
+let paletasGuardadas = JSON.parse(localStorage.getItem('paletas')) || [];
 
 function generarColorHEX() {
     let caracteres = '0123456789ABCDEF';
@@ -15,17 +18,16 @@ function generarColorHEX() {
 }
 
 function copiarColor(color) {
-    navigator.clipboard.writeText(color);
-    alert('¡Has copiado el código de color ' + color + '!');
+    navigator.clipboard.writeText(color)
+        .then(() => {
+            alert('¡Has copiado el código de color ' + color + '!');
+        });
 }
 
-function paletaColores() {
+function mostrarPaleta(colores) {
     palette.innerHTML = '';
 
-    for (let i = 0; i < cantidadpalette.value; i++) {
-
-        let color = generarColorHEX();
-
+    for (let color of colores) {
         palette.innerHTML += `
             <article class="color-card">
                 <div class="color-box" style="background-color: ${color}"></div>
@@ -35,12 +37,29 @@ function paletaColores() {
     }
 }
 
-palette.addEventListener('click', function(event) {
+function paletaColores() {
+    let colores = [];
 
+    for (let i = 0; i < cantidadpalette.value; i++) {
+        let color = generarColorHEX();
+        colores.push(color);
+    }
+
+    mostrarPaleta(colores);
+
+    paletasGuardadas.push(colores);
+
+    localStorage.setItem('paletas', JSON.stringify(paletasGuardadas));
+}
+
+palette.addEventListener('click', function(event) {
     if (event.target.classList.contains('codigoHEX')) {
         copiarColor(event.target.textContent);
     }
-
 });
+
+if (paletasGuardadas.length > 0) {
+    mostrarPaleta(paletasGuardadas[paletasGuardadas.length - 1]);
+}
 
 generar.addEventListener('click', paletaColores);
